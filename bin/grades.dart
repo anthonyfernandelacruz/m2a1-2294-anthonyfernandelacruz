@@ -1,6 +1,26 @@
-// M2A1: the console program that reads a name and three scores.
-// Build it with the instructor during the demo.
+import 'dart:io';
+import '../lib/grades.dart';
 
 void main() {
-  print('Student Grades: not built yet');
+  print('Enter student name:');
+  String name = stdin.readLineSync() ?? '';
+
+  List<double> scores = [];
+
+  for (int i = 1; i <= 3; i++) {
+    print('Enter score $i:');
+
+    double score = double.tryParse(stdin.readLineSync() ?? '') ?? 0;
+
+    scores.add(score);
+  }
+
+  double average = computeAverage(scores);
+
+  String remark = remarkFor(average);
+
+  print('\n----- STUDENT RESULT -----');
+  print('Name: $name');
+  print('Average: ${average.toStringAsFixed(2)}');
+  print('Remark: $remark');
 }
